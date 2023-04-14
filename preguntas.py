@@ -55,12 +55,15 @@ def pregunta_02():
 
     """
 
+
+
 def pregunta_03():
+    
+    lt= sorted(tbl0["_c1"].unique())
+    num = tbl0[["_c0","_c1"]]
+    i = (tbl0.value_counts("_c1")).sort_index()
 
-    for i in tbl0:
-        print(i[1])
-
-    return "Done"
+    return i
 
 print(pregunta_03())
 
