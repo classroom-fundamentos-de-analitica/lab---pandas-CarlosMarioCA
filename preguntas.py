@@ -27,8 +27,6 @@ def pregunta_01():
 
     return num
 
-
-def pregunta_02():
     """
     ¿Cuál es la cantidad de columnas en la tabla `tbl0.tsv`?
 
@@ -36,10 +34,13 @@ def pregunta_02():
     4
 
     """
-    return
 
+def pregunta_02():
 
-def pregunta_03():
+    num = tbl0.shape[1]
+
+    return num
+
     """
     ¿Cuál es la cantidad de registros por cada letra de la columna _c1 del archivo
     `tbl0.tsv`?
@@ -53,7 +54,15 @@ def pregunta_03():
     Name: _c1, dtype: int64
 
     """
-    return
+
+def pregunta_03():
+
+    for i in tbl0:
+        print(i[1])
+
+    return "Done"
+
+print(pregunta_03())
 
 
 def pregunta_04():
