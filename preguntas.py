@@ -55,8 +55,6 @@ def pregunta_02():
 
     """
 
-
-
 def pregunta_03():
     
     lt= sorted(tbl0["_c1"].unique())
@@ -65,10 +63,6 @@ def pregunta_03():
 
     return i
 
-print(pregunta_03())
-
-
-def pregunta_04():
     """
     Calcule el promedio de _c2 por cada letra de la _c1 del archivo `tbl0.tsv`.
 
@@ -80,7 +74,12 @@ def pregunta_04():
     E    4.785714
     Name: _c2, dtype: float64
     """
-    return
+
+def pregunta_04():
+
+    i = (tbl0.value_counts("_c1")).sort_index()
+
+    return i
 
 
 def pregunta_05():
