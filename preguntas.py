@@ -217,8 +217,7 @@ def pregunta_11():
     impres = pd.DataFrame(values, indices)
     return impres
 
-def pregunta_12():
-    """
+"""
     Construya una tabla que contenga _c0 y una lista separada por ',' de los valores de
     la columna _c5a y _c5b (unidos por ':') de la tabla `tbl2.tsv`.
 
@@ -231,12 +230,16 @@ def pregunta_12():
     37   37                    eee:0,fff:2,hhh:6
     38   38                    eee:0,fff:9,iii:2
     39   39                    ggg:3,hhh:8,jjj:5
-    """
-    return
+"""
 
+def pregunta_12():
+    tbl2["_c5b"] = tbl2["_c5b"].astype(str)
+    tbl2["_c5"] = tbl2[["_c5a","_c5b"]].apply(":".join, axis = 1)
+    values = tbl2.groupby("_c0")["_c5"].apply(lambda listF: ",".join(str(i) for i in sorted(listF)))
+    df = pd.DataFrame(values)
+    return df
 
-def pregunta_13():
-    """
+"""
     Si la columna _c0 es la clave en los archivos `tbl0.tsv` y `tbl2.tsv`, compute la
     suma de tbl2._c5b por cada valor en tbl0._c1.
 
@@ -248,5 +251,9 @@ def pregunta_13():
     D    112
     E    275
     Name: _c5b, dtype: int64
-    """
-    return
+"""
+
+def pregunta_13():
+    #tbl0.merge(tbl2, right_on="_c0", left_on="_c0").groupby("_c1").sum()["_c5b"]
+    df = pd.merge(tbl0, tbl2)
+    return df.groupby("_c1")["_c5b"].sum()
