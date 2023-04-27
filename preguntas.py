@@ -9,6 +9,7 @@ Utilice los archivos `tbl0.tsv`, `tbl1.tsv` y `tbl2.tsv`, para resolver las preg
 """
 import pandas as pd
 
+
 tbl0 = pd.read_csv("tbl0.tsv", sep="\t")
 tbl1 = pd.read_csv("tbl1.tsv", sep="\t")
 tbl2 = pd.read_csv("tbl2.tsv", sep="\t")
@@ -63,7 +64,8 @@ def pregunta_03():
 
     return i
 
-    """
+
+"""
     Calcule el promedio de _c2 por cada letra de la _c1 del archivo `tbl0.tsv`.
 
     Rta/
@@ -73,14 +75,14 @@ def pregunta_03():
     D    3.833333
     E    4.785714
     Name: _c2, dtype: float64
-    """
+"""
 
 def pregunta_04():
 
-    i = (tbl0.value_counts("_c1")).sort_index()
-
+    i = tbl0.group
     return i
 
+print(pregunta_04())
 
 def pregunta_05():
     """
