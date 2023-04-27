@@ -184,13 +184,18 @@ def pregunta_09():
 """
 
 def pregunta_10():
+    values = tbl0[["_c1","_c2"]].groupby("_c1")["_c2"]
+    listF = []
+    for i in values:
+        ord = sorted(i[1])
+        call = ":".join(str(a) for a in ord)
+        listF.append((i[0],call))
     
-    return
+    impres = pd.DataFrame(listF)
+    impres.columns = ["_c0","_c1"]
+    return impres
 
-print(pregunta_09())
-
-def pregunta_11():
-    """
+"""
     Construya una tabla que contenga _c0 y una lista separada por ',' de los valores de
     la columna _c4 del archivo `tbl1.tsv`.
 
@@ -204,9 +209,13 @@ def pregunta_11():
     37   37  a,c,e,f
     38   38      d,e
     39   39    a,d,f
-    """
-    return
+"""
 
+def pregunta_11():
+    indices = tbl1["_c0"].unique()
+    values = tbl1.groupby("_c0")["_c4"].apply(lambda listF: ",".join(str(i) for i in sorted(listF)))
+    impres = pd.DataFrame(values, indices)
+    return impres
 
 def pregunta_12():
     """
