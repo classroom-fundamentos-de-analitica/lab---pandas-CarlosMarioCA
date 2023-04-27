@@ -28,13 +28,13 @@ def pregunta_01():
 
     return num
 
-    """
+"""
     ¿Cuál es la cantidad de columnas en la tabla `tbl0.tsv`?
 
     Rta/
     4
 
-    """
+"""
 
 def pregunta_02():
 
@@ -79,13 +79,10 @@ def pregunta_03():
 
 def pregunta_04():
 
-    i = tbl0.group
+    i = tbl0.groupby("_c1")["_c2"].mean()
     return i
 
-print(pregunta_04())
-
-def pregunta_05():
-    """
+"""
     Calcule el valor máximo de _c2 por cada letra en la columna _c1 del archivo
     `tbl0.tsv`.
 
@@ -97,24 +94,28 @@ def pregunta_05():
     D    7
     E    9
     Name: _c2, dtype: int64
-    """
-    return
+"""
+
+def pregunta_05():
+    i = tbl0.groupby("_c1")["_c2"].max()
+    return i
 
 
-def pregunta_06():
-    """
+"""
     Retorne una lista con los valores unicos de la columna _c4 de del archivo `tbl1.csv`
     en mayusculas y ordenados alfabéticamente.
 
     Rta/
     ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
-    """
-    return
+"""
+
+def pregunta_06(): 
+    list = sorted(tbl1["_c4"].unique())
+    return [i.upper() for i in list]
 
 
-def pregunta_07():
-    """
+"""
     Calcule la suma de la _c2 por cada letra de la _c1 del archivo `tbl0.tsv`.
 
     Rta/
@@ -125,11 +126,11 @@ def pregunta_07():
     D    23
     E    67
     Name: _c2, dtype: int64
-    """
-    return
+"""
 
-
-def pregunta_08():
+def pregunta_07():
+    i = tbl0.groupby("_c1")["_c2"].sum()
+    return i
     """
     Agregue una columna llamada `suma` con la suma de _c0 y _c2 al archivo `tbl0.tsv`.
 
@@ -144,11 +145,12 @@ def pregunta_08():
     39   39   E    5  1998-01-26    44
 
     """
-    return
 
+def pregunta_08():
+    tbl0["suma"] = tbl0["_c0"]+tbl0["_c2"]
+    return tbl0
 
-def pregunta_09():
-    """
+"""
     Agregue el año como una columna al archivo `tbl0.tsv`.
 
     Rta/
@@ -161,12 +163,13 @@ def pregunta_09():
     38   38   E    1  1999-09-28  1999
     39   39   E    5  1998-01-26  1998
 
-    """
-    return
+"""
 
+def pregunta_09():
+    tbl0["year"] = tbl0["_c3"].str.split("-").str[0]
+    return tbl0
 
-def pregunta_10():
-    """
+"""
     Construya una tabla que contenga _c1 y una lista separada por ':' de los valores de
     la columna _c2 para el archivo `tbl0.tsv`.
 
@@ -178,9 +181,13 @@ def pregunta_10():
     2   C                    0:5:6:7:9
     3   D                  1:2:3:5:5:7
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
-    """
+"""
+
+def pregunta_10():
+    
     return
 
+print(pregunta_09())
 
 def pregunta_11():
     """
