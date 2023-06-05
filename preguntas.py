@@ -184,16 +184,13 @@ def pregunta_09():
 """
 
 def pregunta_10():
-    values = tbl0[["_c1","_c2"]].groupby("_c1")["_c2"]
-    listF = []
-    for i in values:
-        ord = sorted(i[1])
-        call = ":".join(str(a) for a in ord)
-        listF.append((i[0],call))
-    
-    impres = pd.DataFrame(listF)
-    impres.columns = ["_c0","_c1"]
-    return impres
+    aux=tbl0.copy()
+    aux["_c2"]=aux["_c2"].astype(str)
+    data = aux.sort_values("_c2").groupby("_c1")["_c2"].apply(lambda x: ":".join(x))
+    tbl=pd.DataFrame(data).reset_index()
+    return tbl
+
+print(pregunta_10())
 
 """
     Construya una tabla que contenga _c0 y una lista separada por ',' de los valores de
