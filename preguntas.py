@@ -184,13 +184,15 @@ def pregunta_09():
 """
 
 def pregunta_10():
-    aux=tbl0.copy()
-    aux["_c2"]=aux["_c2"].astype(str)
-    data = aux.sort_values("_c2").groupby("_c1")["_c2"].apply(lambda x: ":".join(x))
-    tbl=pd.DataFrame(data).reset_index()
-    return tbl
-
-print(pregunta_10())
+    letters = sorted(tbl0._c1.unique())
+    dict = {"_c2": []}
+    for i in letters:
+        values = sorted(tbl0[tbl0._c1 == i]._c2)
+        listV = [str(a) for a in values]
+        val = ":".join(listV)
+        dict["_c2"] = dict["_c2"] + [val]
+    result = pd.DataFrame(dict, index=pd.Series(letters, name="_c1"))
+    return result
 
 """
     Construya una tabla que contenga _c0 y una lista separada por ',' de los valores de
