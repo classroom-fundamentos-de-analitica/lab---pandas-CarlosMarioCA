@@ -211,10 +211,14 @@ def pregunta_10():
 """
 
 def pregunta_11():
-    indices = tbl1["_c0"].unique()
-    values = tbl1.groupby("_c0")["_c4"].apply(lambda listF: ",".join(str(i) for i in sorted(listF)))
-    impres = pd.DataFrame(values, indices)
-    return impres
+    keys = tbl1._c0.unique()
+    data = {"_c0": keys, "_c4": []}
+    for i in keys:
+        values = sorted(tbl1[tbl1._c0 == i]._c4)
+        val = ",".join(values)
+        data["_c4"] += [val]
+    result = pd.DataFrame(data)
+    return result
 
 """
     Construya una tabla que contenga _c0 y una lista separada por ',' de los valores de
@@ -234,8 +238,9 @@ def pregunta_11():
 def pregunta_12():
     tbl2["_c5b"] = tbl2["_c5b"].astype(str)
     tbl2["_c5"] = tbl2[["_c5a","_c5b"]].apply(":".join, axis = 1)
+    c0 = sorted(list(tbl2['_c0'].unique()))
     values = tbl2.groupby("_c0")["_c5"].apply(lambda listF: ",".join(str(i) for i in sorted(listF)))
-    df = pd.DataFrame(values)
+    df = pd.DataFrame({'_c0': c0, "_c5": list(values.array)})
     return df
 
 """
